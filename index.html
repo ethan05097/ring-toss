@@ -28,6 +28,7 @@ button:hover{filter:brightness(1.04);transform:translateY(-2px)}button:disabled{
 .prize-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:15px 0}
 .prize{background:#fff8e8;border:2px solid #d99b42;border-radius:14px;padding:12px 15px;min-width:125px;font-weight:800}
 .prize span{display:block;font-size:2rem;margin-bottom:4px}
+.prize-row.pole-preview .prize{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-height:105px}.mini-pole{display:block;width:18px;height:54px;margin:5px auto 9px;border:2px solid #8b4b25;border-radius:7px 7px 3px 3px;background:linear-gradient(90deg,#b96a32 0%,#ffd27b 38%,#d88a3e 72%,#985027 100%);box-shadow:inset 2px 0 2px #fff0b5,0 3px 3px #74401f}.mini-pole.tall{height:68px}
 .toss-stage{height:230px;position:relative;overflow:hidden;margin:18px auto 4px;max-width:560px;border-radius:18px;background:linear-gradient(#ffe9ad 0 65%,#d99a4c 65%);border:4px solid #a9572c;box-shadow:inset 0 0 0 4px #ffedb8,0 5px 0 #9d542e}
 .toss-stage:before{content:"";position:absolute;left:0;right:0;bottom:0;height:66px;background:repeating-linear-gradient(90deg,#bd783b 0 42px,#d18b48 42px 84px);border-top:5px solid #98512e}
 .toss-stage:after{content:"";position:absolute;left:8%;right:8%;bottom:57px;height:8px;border-radius:50%;background:#f7d58b;box-shadow:0 3px 0 #a75c31}
@@ -91,10 +92,10 @@ footer{text-align:center;color:#8c704d;padding:0 12px 25px;font-size:.85rem}
 <div class="stat"><small>💰 零用錢</small><strong id="coins">50</strong><small>元</small></div>
 <div class="stat"><small>🎁 戰利品</small><strong id="itemCount">0</strong><small>件</small></div>
 </div>
-<div class="stall"><div class="stall-title">🏮 老闆的超人氣獎品架 🏮</div>
-<div class="prize-row"><div class="prize"><span>🧸</span>大隻卡比獸娃娃</div><div class="prize"><span>🔫</span>塑膠水槍</div><div class="prize"><span>🥔</span>小包洋芋片</div></div>
+<div class="stall"><div class="stall-title">🏮 夜市套圈圈目標柱 🏮</div>
+<div class="prize-row pole-preview"><div class="prize"><span class="mini-pole"></span>第一根柱子</div><div class="prize"><span class="mini-pole tall"></span>第二根柱子</div><div class="prize"><span class="mini-pole"></span>第三根柱子</div></div>
 <div class="toss-stage" id="tossStage" aria-label="套圈圈動畫區"><div class="toss-target" aria-label="套圈圈目標柱子"><span class="pole"></span><span class="pole"></span><span class="pole"></span></div><div class="ring-shadow"></div><div class="flying-ring" id="flyingRing"></div><div class="spark">✨</div><div class="toss-caption" id="tossCaption">按下「丟出一個圈圈」開始挑戰！</div></div>
-<div class="muted">獎品不容易套中，試試你的手氣吧！</div></div>
+<div class="muted">瞄準三根柱子，把圈圈套上去吧！</div></div>
 <div class="notice" id="notice" aria-live="polite">選擇一個動作，開始你的夜市冒險！</div>
 <div class="actions">
 <button class="primary" id="throwBtn" onclick="throwRing()">🎯 丟出一個圈圈！</button>
