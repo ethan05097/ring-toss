@@ -43,15 +43,16 @@ button:hover{filter:brightness(1.04);transform:translateY(-2px)}button:disabled{
 .ring-shadow{position:absolute;z-index:4;left:50%;bottom:22px;width:58px;height:12px;border-radius:50%;background:#61371966;transform:translateX(-50%);filter:none;opacity:0;will-change:transform,opacity}
 .toss-stage.throwing .flying-ring{animation:ringArc 1.25s cubic-bezier(.22,.7,.25,1) both;will-change:transform,opacity}
 .toss-stage.throwing .ring-shadow{animation:shadowArc 1.25s ease-out both;will-change:transform,opacity}
-.toss-stage.throwing.hit .toss-target{animation:targetWiggle .35s 1.02s cubic-bezier(.3,.7,.3,1) 1}
-.toss-stage.throwing.hit .pole{animation:poleImpact .34s 1.02s cubic-bezier(.2,.8,.25,1) 1}
+.toss-stage.throwing.hit .toss-target{animation:targetWiggle .48s .78s cubic-bezier(.2,.8,.25,1) 1}
+.toss-stage.throwing.hit .pole{animation:poleImpact .48s .78s cubic-bezier(.2,.8,.25,1) 1}
+.toss-stage.throwing.hit .impact-burst{animation:impactBurst .55s .78s ease-out}
 .toss-stage.throwing.miss .flying-ring{animation-name:ringMissArc}
-.toss-stage.hit{animation:hitFlash .35s .98s ease-out}
+.toss-stage.hit{animation:hitFlash .5s .78s ease-out}
 .toss-caption{position:absolute;z-index:7;bottom:7px;left:0;right:0;font-size:.9rem;font-weight:900;color:#75421e;pointer-events:none;text-shadow:0 1px 2px #fff4d6}
 .spark{position:absolute;z-index:6;top:42px;left:50%;font-size:1.3rem;opacity:0;pointer-events:none}
-.toss-stage.hit .spark{animation:sparkPop .4s .98s ease-out forwards}
-.impact-burst{position:absolute;z-index:3;left:50%;top:57px;width:18px;height:18px;border:3px solid #fff1a8;border-radius:50%;opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.2)}
-.toss-stage.hit .impact-burst{animation:impactBurst .42s .98s ease-out}
+.toss-stage.throwing.hit .spark{animation:sparkPop .5s .78s ease-out forwards}
+.impact-burst{position:absolute;z-index:6;left:50%;top:143px;width:18px;height:18px;border:3px solid #fff1a8;border-radius:50%;opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.2)}
+.toss-stage.throwing.hit .impact-burst{animation:impactBurst .55s .78s ease-out}
 @keyframes ringArc{0%{opacity:0;transform:translate3d(-50%,0,0) rotateX(58deg) rotateZ(-12deg) scale(1.08)}8%{opacity:1}28%{transform:translate3d(-50%,-38px,0) rotateX(63deg) rotateZ(75deg) scale(1)}58%{transform:translate3d(-50%,-91px,0) rotateX(70deg) rotateZ(210deg) scale(.86)}82%{transform:translate3d(-50%,-126px,0) rotateX(75deg) rotateZ(315deg) scale(.76)}100%{opacity:1;transform:translate3d(-50%,-136px,0) rotateX(76deg) rotateZ(360deg) scale(.72)}}
 @keyframes ringMissArc{0%{opacity:0;transform:translate(-50%,0) rotateX(58deg) rotateZ(-12deg) scale(1.08)}8%{opacity:1}28%{transform:translate(-43%,-38px) rotateX(63deg) rotateZ(75deg) scale(1)}58%{transform:translate(-22%,-91px) rotateX(70deg) rotateZ(210deg) scale(.86)}82%{transform:translate(12%,-116px) rotateX(78deg) rotateZ(315deg) scale(.68)}100%{opacity:0;transform:translate(45%,-82px) rotateX(85deg) rotateZ(390deg) scale(.5)}}
 @keyframes shadowArc{0%{opacity:.42;transform:translateX(-50%) scale(1)}35%{opacity:.3;transform:translateX(-50%) scale(.82)}70%{opacity:.2;transform:translateX(-50%) scale(.62)}100%{opacity:.18;transform:translateX(-50%) scale(.55)}}
