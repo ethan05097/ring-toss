@@ -28,14 +28,16 @@ button:hover{filter:brightness(1.04);transform:translateY(-2px)}button:disabled{
 .prize-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:15px 0}
 .prize{background:#fff8e8;border:2px solid #d99b42;border-radius:14px;padding:12px 15px;min-width:125px;font-weight:800}
 .prize span{display:block;font-size:2rem;margin-bottom:4px}
-.prize-row.pole-preview .prize{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-height:105px}.mini-pole{display:block;width:18px;height:54px;margin:5px auto 9px;border:2px solid #8b4b25;border-radius:7px 7px 3px 3px;background:linear-gradient(90deg,#b96a32 0%,#ffd27b 38%,#d88a3e 72%,#985027 100%);box-shadow:inset 2px 0 2px #fff0b5,0 3px 3px #74401f}.mini-pole.tall{height:68px}
+.prize-row.pole-preview .prize{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-height:105px;background:transparent;border:0;min-width:100px;padding:6px;color:#713b20;text-shadow:0 1px #ffe7b2}.mini-pole{display:block;position:relative;width:23px;height:58px;margin:5px auto 9px;border:1px solid #75401f;border-radius:11px 11px 4px 4px;background:repeating-linear-gradient(87deg,transparent 0 5px,#75401f22 6px 7px,transparent 8px 12px),linear-gradient(90deg,#78401f 0%,#b96b32 16%,#f2c078 39%,#d9954c 67%,#a75b2b 88%,#693719 100%);box-shadow:inset 3px 0 3px #ffe2a4aa,inset -3px 0 4px #542b1688,0 4px 3px #74401f}.mini-pole:before{content:"";position:absolute;left:-2px;right:-2px;top:-3px;height:10px;border:1px solid #75401f;border-radius:50%;background:linear-gradient(90deg,#a45b2b,#f5c982 45%,#a45b2b);box-shadow:0 2px 2px #63351888}.mini-pole.tall{height:70px}
 .toss-stage{height:230px;position:relative;overflow:hidden;margin:18px auto 4px;max-width:560px;border-radius:18px;background:linear-gradient(#ffe9ad 0 65%,#d99a4c 65%);border:4px solid #a9572c;box-shadow:inset 0 0 0 4px #ffedb8,0 5px 0 #9d542e}
 .toss-stage:before{content:"";position:absolute;left:0;right:0;bottom:0;height:66px;background:repeating-linear-gradient(90deg,#bd783b 0 42px,#d18b48 42px 84px);border-top:5px solid #98512e}
 .toss-stage:after{content:"";position:absolute;left:8%;right:8%;bottom:57px;height:8px;border-radius:50%;background:#f7d58b;box-shadow:0 3px 0 #a75c31}
 .toss-target{position:absolute;z-index:1;top:28px;left:50%;display:flex;align-items:flex-end;gap:27px;height:112px;transform:translateX(-50%);filter:drop-shadow(0 5px 1px #8d4a24);transform-origin:50% 85%}
-.pole{display:block;width:13px;height:76px;border:2px solid #8b4b25;border-radius:7px 7px 3px 3px;background:linear-gradient(90deg,#b96a32 0%,#ffd27b 38%,#d88a3e 72%,#985027 100%);box-shadow:inset 2px 0 2px #fff0b5}
-.pole:nth-child(2){height:98px}
-.pole:nth-child(3){height:82px}
+.pole{display:block;position:relative;width:22px;height:82px;border:1px solid #75401f;border-radius:11px 11px 4px 4px;background:repeating-linear-gradient(87deg,transparent 0 5px,#75401f22 6px 7px,transparent 8px 12px),linear-gradient(90deg,#78401f 0%,#b96b32 16%,#f2c078 39%,#d9954c 67%,#a75b2b 88%,#693719 100%);box-shadow:inset 3px 0 3px #ffe2a4aa,inset -3px 0 4px #542b1688,0 4px 3px #74401f}
+.pole:before{content:"";position:absolute;left:-2px;right:-2px;top:-3px;height:11px;border:1px solid #75401f;border-radius:50%;background:linear-gradient(90deg,#a45b2b,#f5c982 45%,#a45b2b);box-shadow:0 2px 2px #63351888}
+.pole:after{content:"";position:absolute;left:5px;top:20%;width:2px;height:55%;border-radius:50%;background:#ffe0a477;filter:blur(.5px)}
+.pole:nth-child(2){height:105px}
+.pole:nth-child(3){height:88px}
 .toss-target:after{content:"";position:absolute;bottom:-5px;left:-15px;width:125px;height:12px;border-radius:50%;background:#9a5b31;box-shadow:0 3px 0 #74401f}
 .flying-ring{position:absolute;z-index:5;left:50%;bottom:24px;width:66px;height:34px;border:9px solid #df3f2e;border-top-color:#ff8b4f;border-right-color:#a92826;border-radius:50%;opacity:0;transform:translateX(-50%) rotateX(58deg);filter:drop-shadow(0 5px 2px #74351f);box-shadow:inset 0 2px 1px #ffd08a}
 .flying-ring:after{content:"";position:absolute;inset:3px;border:2px solid #ffd08a;border-radius:50%;opacity:.7}
