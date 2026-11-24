@@ -25,7 +25,7 @@ button:hover{filter:brightness(1.04);transform:translateY(-2px)}button:disabled{
 .stat small{display:block;color:#80633e;font-weight:700}.stat strong{font-size:1.55rem;color:var(--red)}
 .stall{background:linear-gradient(#f6c75e,#e99b39);border:5px solid #a84c2c;border-radius:20px;padding:22px 15px;margin:18px 0;text-align:center;box-shadow:inset 0 0 0 4px #ffe6a1}
 .stall-title{font-size:1.35rem;font-weight:1000;color:#71321f}
-.toss-stage{--target-x:0px;height:230px;position:relative;overflow:hidden;margin:18px auto 4px;max-width:560px;border-radius:18px;background:linear-gradient(#ffe9ad 0 65%,#d99a4c 65%);border:4px solid #a9572c;box-shadow:inset 0 0 0 4px #ffedb8,0 5px 0 #9d542e}
+.toss-stage{--target-x:0px;--flight-duration:1.25s;--impact-delay:1s;--spark-delay:.72s;height:230px;position:relative;overflow:hidden;margin:18px auto 4px;max-width:560px;border-radius:18px;background:linear-gradient(#ffe9ad 0 65%,#d99a4c 65%);border:4px solid #a9572c;box-shadow:inset 0 0 0 4px #ffedb8,0 5px 0 #9d542e}
 .toss-stage:before{content:"";position:absolute;left:0;right:0;bottom:0;height:66px;background:repeating-linear-gradient(90deg,#bd783b 0 42px,#d18b48 42px 84px);border-top:5px solid #98512e}
 .toss-stage:after{content:"";position:absolute;left:8%;right:8%;bottom:57px;height:8px;border-radius:50%;background:#f7d58b;box-shadow:0 3px 0 #a75c31}
 .toss-target{position:absolute;z-index:1;top:28px;left:50%;display:flex;align-items:flex-end;gap:2px;height:112px;transform:translateX(-50%);transform-origin:50% 85%}
@@ -43,26 +43,39 @@ button:hover{filter:brightness(1.04);transform:translateY(-2px)}button:disabled{
 .flying-ring{position:absolute;z-index:5;left:50%;bottom:24px;width:66px;height:34px;border:9px solid #df3f2e;border-top-color:#ff8b4f;border-right-color:#a92826;border-radius:50%;opacity:0;transform:translateX(-50%) rotateX(58deg);box-shadow:inset 0 2px 1px #ffd08a;backface-visibility:hidden;transform-style:preserve-3d;will-change:transform,opacity}
 .flying-ring:after{content:"";position:absolute;inset:3px;border:2px solid #ffd08a;border-radius:50%;opacity:.7}
 .ring-shadow{position:absolute;z-index:4;left:50%;bottom:22px;width:58px;height:12px;border-radius:50%;background:#61371966;transform:translateX(-50%);filter:none;opacity:0;will-change:transform,opacity}
-.toss-stage.throwing .flying-ring{animation:ringArc 1.25s cubic-bezier(.22,.7,.25,1) both;will-change:transform,opacity}
-.toss-stage.throwing .ring-shadow{animation:shadowArc 1.25s ease-out both;will-change:transform,opacity}
-.toss-stage.throwing.hit .toss-target{animation:targetWiggle .62s 1s cubic-bezier(.2,.8,.25,1) 1}
-.toss-stage.throwing.hit .pole.aimed{animation:poleImpact .62s 1s cubic-bezier(.2,.8,.25,1) 1}
-.toss-stage.throwing.hit .impact-burst{animation:impactBurst .75s 1s ease-out}
-.toss-stage.throwing.miss .toss-target{animation:missTargetBump .42s 1s ease-out}
-.toss-stage.throwing.miss .pole.aimed{animation:missPoleBump .42s 1s ease-out}
-.toss-stage.throwing.miss .impact-burst{animation:missBurst .62s 1s ease-out}
-.toss-stage.throwing.miss .flying-ring{animation-name:ringMissArc}
-.toss-stage.throwing.hit{animation:hitFlash .7s 1s ease-out}
-.toss-stage.throwing.miss{animation:missFlash .45s 1s ease-out}
+.toss-stage.throwing .flying-ring{animation:ringArc var(--flight-duration) cubic-bezier(.22,.7,.25,1) both;will-change:transform,opacity}
+.toss-stage.throwing .ring-shadow{animation:shadowArc var(--flight-duration) ease-out both;will-change:transform,opacity}
+.toss-stage.throwing.hit .toss-target{animation:targetWiggle .62s var(--impact-delay) cubic-bezier(.2,.8,.25,1) 1}
+.toss-stage.throwing.hit .pole.aimed{animation:poleImpact .62s var(--impact-delay) cubic-bezier(.2,.8,.25,1) 1}
+.toss-stage.throwing.hit .impact-burst{animation:impactBurst .75s var(--impact-delay) ease-out}
+.toss-stage.throwing.miss .toss-target{animation:missTargetBump .42s var(--impact-delay) ease-out}
+.toss-stage.throwing.miss .pole.aimed{animation:missPoleBump .42s var(--impact-delay) ease-out}
+.toss-stage.throwing.miss .impact-burst{animation:missBurst .62s var(--impact-delay) ease-out}
+.toss-stage.throwing:is(.miss,.power-miss) .flying-ring{animation-name:ringMissArc}
+.toss-stage.power-miss .flying-ring{
+  --miss-rise-early:calc(var(--power-peak) * .3);
+  --miss-rise-mid:calc(var(--power-peak) * .75);
+  --miss-rise-late:var(--power-peak);
+  --miss-land:var(--power-end)
+}
+.toss-stage.throwing.hit{animation:hitFlash .7s var(--impact-delay) ease-out}
+.toss-stage.throwing.miss{animation:missFlash .45s var(--impact-delay) ease-out}
 .toss-caption{position:absolute;z-index:7;bottom:7px;left:0;right:0;font-size:.9rem;font-weight:900;color:#75421e;pointer-events:none;text-shadow:0 1px 2px #fff4d6}
 .spark{position:absolute;z-index:6;top:42px;left:calc(50% + var(--target-x));font-size:1.3rem;opacity:0;pointer-events:none}
-.toss-stage.throwing .spark{animation:sparkPop .55s .72s ease-out forwards}
+.toss-stage.throwing:not(.power-miss) .spark{animation:sparkPop .55s var(--spark-delay) ease-out forwards}
 .impact-burst{position:absolute;z-index:6;left:calc(50% + var(--target-x));top:54px;width:34px;height:34px;border:5px solid #fff1a8;box-shadow:0 0 18px 8px #ffd54fcc;border-radius:50%;opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.2)}
+.toss-stage.throwing.power-miss .impact-burst{
+  top:calc(100% - 41px + var(--power-end));
+  border-color:#fff4d6;
+  box-shadow:0 0 8px 4px #fff4d699;
+  animation:powerLanding .25s var(--flight-duration) ease-out
+}
 .toss-stage.hit .impact-burst:after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:1.25rem;font-weight:1000;text-shadow:0 2px 4px #9b5a00}
 .toss-stage.miss .impact-burst{border-color:#d8e1e8;box-shadow:0 0 10px 4px #71809688}
 .toss-stage.miss .impact-burst:after{content:"×";position:absolute;inset:0;display:grid;place-items:center;color:#52616d;font-size:1.7rem;font-weight:1000}
 @keyframes ringArc{0%{left:50%;opacity:0;transform:translate3d(-50%,0,0) rotateX(58deg) rotateZ(-12deg) scale(1.08)}8%{opacity:1}28%{left:calc(50% + var(--x1));transform:translate3d(-50%,-38px,0) rotateX(63deg) rotateZ(75deg) scale(1)}58%{left:calc(50% + var(--x2));transform:translate3d(-50%,-91px,0) rotateX(70deg) rotateZ(210deg) scale(.86)}82%{left:calc(50% + var(--x3));transform:translate3d(-50%,-126px,0) rotateX(75deg) rotateZ(315deg) scale(.76)}100%{left:calc(50% + var(--target-x));opacity:1;transform:translate3d(-50%,-136px,0) rotateX(76deg) rotateZ(360deg) scale(.72)}}
-@keyframes ringMissArc{0%{left:50%;opacity:0;transform:translate(-50%,0) rotateX(58deg) rotateZ(-12deg) scale(1.08)}8%{opacity:1}28%{left:calc(50% + var(--x1));transform:translate(-50%,-38px) rotateX(63deg) rotateZ(75deg) scale(1)}58%{left:calc(50% + var(--x2));transform:translate(-50%,-91px) rotateX(70deg) rotateZ(210deg) scale(.86)}82%{left:calc(50% + var(--x3));transform:translate(-50%,-116px) rotateX(78deg) rotateZ(315deg) scale(.68)}100%{left:calc(50% + var(--miss-end));opacity:1;transform:translate(-50%,-82px) rotateX(85deg) rotateZ(390deg) scale(.5)}}
+@keyframes ringMissArc{0%{left:50%;opacity:0;transform:translate(-50%,0) rotateX(58deg) rotateZ(-12deg) scale(1.08)}8%{opacity:1}28%{left:calc(50% + var(--x1));transform:translate(-50%,var(--miss-rise-early,-38px)) rotateX(63deg) rotateZ(75deg) scale(1)}58%{left:calc(50% + var(--x2));transform:translate(-50%,var(--miss-rise-mid,-91px)) rotateX(70deg) rotateZ(210deg) scale(.86)}82%{left:calc(50% + var(--x3));transform:translate(-50%,var(--miss-rise-late,-116px)) rotateX(78deg) rotateZ(315deg) scale(.68)}100%{left:calc(50% + var(--miss-end));opacity:1;transform:translate(-50%,var(--miss-land,-82px)) rotateX(85deg) rotateZ(390deg) scale(.5)}}
+@keyframes powerLanding{0%{opacity:.8;transform:translate(-50%,-50%) scale(.35)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.6)}}
 @keyframes shadowArc{0%{opacity:.42;transform:translateX(-50%) scale(1)}35%{opacity:.3;transform:translateX(-50%) scale(.82)}70%{opacity:.2;transform:translateX(-50%) scale(.62)}100%{opacity:.18;transform:translateX(-50%) scale(.55)}}
 @keyframes targetWiggle{0%,100%{transform:translateX(-50%) rotate(0)}22%{transform:translateX(-50%) rotate(-8deg)}48%{transform:translateX(-50%) rotate(6deg)}72%{transform:translateX(-50%) rotate(-3deg)}}
 @keyframes poleImpact{0%,100%{transform:rotate(0)}22%{transform:rotate(-11deg)}48%{transform:rotate(8deg)}72%{transform:rotate(-4deg)}}
@@ -73,6 +86,11 @@ button:hover{filter:brightness(1.04);transform:translateY(-2px)}button:disabled{
 @keyframes hitFlash{0%{box-shadow:inset 0 0 0 4px #ffedb8,0 5px 0 #9d542e}35%{box-shadow:inset 0 0 0 9px #fff5b8,0 0 34px 10px #ffd54f}100%{box-shadow:inset 0 0 0 4px #ffedb8,0 5px 0 #9d542e}}
 @keyframes missFlash{0%,100%{box-shadow:inset 0 0 0 4px #ffedb8,0 5px 0 #9d542e}45%{box-shadow:inset 0 0 0 4px #dce5eb,0 0 12px #71809666}}
 @keyframes sparkPop{0%{opacity:0;transform:translate(-50%,15px) scale(.4)}30%{opacity:1;transform:translate(-50%,-5px) scale(1.5)}100%{opacity:0;transform:translate(-50%,-32px) scale(.8)}}
+.toss-power{display:grid;gap:4px;width:min(100%,340px);margin:16px auto 0;text-align:left;color:#572a18}
+.toss-power label{display:flex;justify-content:space-between;gap:8px;font-weight:800}
+.toss-power input{display:block;width:100%;min-height:32px;margin:0;padding:0;border:0;background:transparent;accent-color:#a43128;cursor:pointer}
+.toss-power input:disabled{cursor:not-allowed;opacity:.65}
+.toss-power small{font-size:.82rem}
 .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0}
 .notice{min-height:56px;background:#fff1d4;border-left:5px solid var(--gold);border-radius:10px;padding:13px 15px;margin:15px 0;font-weight:700}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
@@ -97,7 +115,7 @@ footer{text-align:center;color:#8c704d;padding:0 12px 25px;font-size:.85rem}
 <details class="subpanel rules-panel home-rules"><summary>📖 遊戲規則（點我查看）</summary>
 <ol>
 <li>輸入挑戰者名稱後開始遊戲，初始有 <strong>50 元</strong>和 <strong>5 個圈圈</strong>。</li>
-<li>點選左、中、右任一柱子，再按「丟出一個圈圈」。每次投擲消耗 1 個圈圈，獎品由系統隨機抽出。</li>
+<li>點選左、中、右任一柱子，調整力道後再丟圈圈。力道適中才有機會套中，獎品隨機抽出。每次投擲消耗 1 個圈圈。</li>
 <li>圈圈不足時，可以花 <strong>20 元</strong>購買 <strong>3 個圈圈</strong>；金額不足就不能購買。</li>
 <li>套中的獎品會放進背包，可以到跳蚤市場出售：娃娃 25 元、水槍 15 元、洋芋片 5 元。</li>
 <li>出售獎品後，該獎品會從背包移除；不想賣的獎品可以保留到最後。</li>
@@ -120,7 +138,13 @@ footer{text-align:center;color:#8c704d;padding:0 12px 25px;font-size:.85rem}
 </div>
 <div class="impact-burst"></div><div class="ring-shadow"></div><div class="flying-ring" id="flyingRing"></div><div class="spark">✨</div>
 <div class="toss-caption" id="tossCaption">點選左、中、右任一柱子來瞄準！</div>
-</div></div>
+</div>
+<div class="toss-power">
+<label for="tossPower">投擲力道 <span id="tossPowerValue" aria-hidden="true">50%</span></label>
+<input id="tossPower" type="range" min="0" max="100" value="50" aria-describedby="tossPowerHint">
+<small id="tossPowerHint">建議力道 40%–60%</small>
+</div>
+</div>
 <div class="notice" id="notice" aria-live="polite">選擇一個動作，開始你的夜市冒險！</div>
 <div class="actions">
 <button class="primary" id="throwBtn" onclick="throwRing()" disabled>🎯 丟出一個圈圈！</button>
@@ -148,6 +172,12 @@ const prizes=["大隻卡比獸娃娃","塑膠水槍","小包洋芋片",...Array(
 let player="",coins=50,rings=5,backpack=[],busy=false,selectedPole=null;
 const poleButtons=[...document.querySelectorAll(".pole-button")];
 const $=id=>document.getElementById(id);
+const tossPower=$("tossPower");
+const minHitPower=40;
+const maxHitPower=60;
+tossPower.addEventListener("input",()=>{
+  $("tossPowerValue").textContent=tossPower.value+"%";
+});
 function show(id){["start","game","market","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
 function startGame(){player=$("playerName").value.trim();if(!player){$("playerName").focus();alert("請先輸入挑戰者大名！");return}$("welcome").textContent=`歡迎 ${player}！祝你今天手氣旺旺！`;show("game");update()}
 poleButtons.forEach(button=>{
@@ -159,6 +189,7 @@ poleButtons.forEach(button=>{
   });
 });
 function update(){
+  tossPower.disabled=busy;
   poleButtons.forEach(button=>{
     button.disabled=busy;
     button.setAttribute("aria-pressed",String(button===selectedPole));
@@ -169,6 +200,11 @@ function throwRing(){
   const target=selectedPole;
   const pole=target.querySelector(".pole");
   const x=target.offsetLeft+(target.offsetWidth-target.parentElement.offsetWidth)/2;
+  const power=tossPower.valueAsNumber;
+  const tooWeak=power<minHitPower;
+  const tooStrong=power>maxHitPower;
+  const outsidePowerRange=tooWeak||tooStrong;
+  const flightMs=1500-power*5;
 
   rings--;
   busy=true;
@@ -178,19 +214,29 @@ function throwRing(){
   stage.style.setProperty("--x1",x*.28+"px");
   stage.style.setProperty("--x2",x*.58+"px");
   stage.style.setProperty("--x3",x*.82+"px");
-  stage.style.setProperty("--miss-end",(x+(x<0?-22:22))+"px");
+  stage.style.setProperty("--flight-duration",flightMs+"ms");
+  stage.style.setProperty("--impact-delay",Math.round(flightMs*.8)+"ms");
+  stage.style.setProperty("--spark-delay",Math.round(flightMs*.576)+"ms");
+  stage.style.setProperty("--miss-end",(outsidePowerRange?x:x+(x<0?-22:22))+"px");
+  if(outsidePowerRange){
+    const peak=tooWeak?50+power:150+(power-maxHitPower)*.275;
+    stage.style.setProperty("--power-peak",-peak+"px");
+    stage.style.setProperty("--power-end",tooWeak?"-18px":"-145px");
+  }
   pole.classList.add("aimed");
-  const got=prizes[Math.floor(Math.random()*prizes.length)];
+  const got=outsidePowerRange?null:prizes[Math.floor(Math.random()*prizes.length)];
   const missed=got==="空罐子 (沒中)";
-  stage.classList.remove("throwing","hit","miss");
-  requestAnimationFrame(()=>stage.classList.add("throwing",missed?"miss":"hit"));
+  const effect=outsidePowerRange?"power-miss":(missed?"miss":"hit");
   $("tossCaption").textContent=`瞄準${target.textContent.trim()}！圈圈飛出去啦！`;
   $("notice").textContent="🎯 圈圈正在飛向獎品架……";
 
-  setTimeout(()=>{
-    stage.classList.remove("throwing","hit","miss");
+  function finishThrow(){
+    stage.classList.remove("throwing",effect);
     pole.classList.remove("aimed");
-    if(missed){
+    if(outsidePowerRange){
+      $("tossCaption").textContent=tooWeak?"力道太輕！":"力道太強！";
+      $("notice").textContent=tooWeak?"圈圈落在柱子前面了。下次試著加一點力道！":"圈圈飛過柱子了。下次試著放輕力道！";
+    }else if(missed){
       $("tossCaption").textContent="💨 哎呀！差一點點！";
       $("notice").textContent="❌ 哎呀！圈圈彈開了，沒有套中！再接再厲！";
     }else{
@@ -201,7 +247,11 @@ function throwRing(){
     busy=false;
     update();
     if(rings===0)$("notice").textContent+=" 圈圈用完了，可以去跳蚤市場整理戰利品，或結束冒險。";
-  },1500);
+  }
+  requestAnimationFrame(()=>{
+    stage.classList.add("throwing",effect);
+    setTimeout(finishThrow,flightMs+(outsidePowerRange?280:250));
+  });
 }
 function buyRings(){if(coins<20){$("notice").textContent="❌ 錢不夠啦！至少需要 20 元才能購買。";return}coins-=20;rings+=3;$("notice").textContent="老闆收下 20 元，遞給你 3 個新圈圈！";update()}
 function goMarket(){renderMarket();show("market")}
