@@ -25,19 +25,21 @@ button:hover{filter:brightness(1.04);transform:translateY(-2px)}button:disabled{
 .stat small{display:block;color:#80633e;font-weight:700}.stat strong{font-size:1.55rem;color:var(--red)}
 .stall{background:linear-gradient(#f6c75e,#e99b39);border:5px solid #a84c2c;border-radius:20px;padding:22px 15px;margin:18px 0;text-align:center;box-shadow:inset 0 0 0 4px #ffe6a1}
 .stall-title{font-size:1.35rem;font-weight:1000;color:#71321f}
-.prize-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:15px 0}
-.prize{background:#fff8e8;border:2px solid #d99b42;border-radius:14px;padding:12px 15px;min-width:125px;font-weight:800}
-.prize span{display:block;font-size:2rem;margin-bottom:4px}
-.prize-row.pole-preview .prize{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-height:105px;background:transparent;border:0;min-width:100px;padding:6px;color:#713b20;text-shadow:0 1px #ffe7b2}.mini-pole{display:block;position:relative;width:16px;height:58px;margin:5px auto 9px;border:1px solid #75401f;border-radius:11px 11px 4px 4px;background:repeating-linear-gradient(87deg,transparent 0 5px,#75401f22 6px 7px,transparent 8px 12px),linear-gradient(90deg,#78401f 0%,#b96b32 16%,#f2c078 39%,#d9954c 67%,#a75b2b 88%,#693719 100%);box-shadow:inset 3px 0 3px #ffe2a4aa,inset -3px 0 4px #542b1688,0 4px 3px #74401f}.mini-pole:before{content:"";position:absolute;left:-2px;right:-2px;top:-3px;height:10px;border:1px solid #75401f;border-radius:50%;background:linear-gradient(90deg,#a45b2b,#f5c982 45%,#a45b2b);box-shadow:0 2px 2px #63351888}.mini-pole.tall{height:70px}
 .toss-stage{--target-x:0px;height:230px;position:relative;overflow:hidden;margin:18px auto 4px;max-width:560px;border-radius:18px;background:linear-gradient(#ffe9ad 0 65%,#d99a4c 65%);border:4px solid #a9572c;box-shadow:inset 0 0 0 4px #ffedb8,0 5px 0 #9d542e}
 .toss-stage:before{content:"";position:absolute;left:0;right:0;bottom:0;height:66px;background:repeating-linear-gradient(90deg,#bd783b 0 42px,#d18b48 42px 84px);border-top:5px solid #98512e}
 .toss-stage:after{content:"";position:absolute;left:8%;right:8%;bottom:57px;height:8px;border-radius:50%;background:#f7d58b;box-shadow:0 3px 0 #a75c31}
-.toss-target{position:absolute;z-index:1;top:28px;left:50%;display:flex;align-items:flex-end;gap:31px;height:112px;transform:translateX(-50%);transform-origin:50% 85%}
+.toss-target{position:absolute;z-index:1;top:28px;left:50%;display:flex;align-items:flex-end;gap:2px;height:112px;transform:translateX(-50%);transform-origin:50% 85%}
+.pole-button{position:relative;display:flex;align-items:flex-end;justify-content:center;width:44px;height:100%;padding:0;background:transparent;color:#71321f}
+.pole-button:hover,.pole-button:disabled{opacity:1;filter:none;transform:none}
+.pole-button:focus-visible{outline:2px solid #71321f;outline-offset:-2px}
+.pole-label{position:absolute;z-index:1;bottom:-26px;left:0;right:0;padding:2px 0;border-radius:6px;font-size:.78rem;background:#fff0c2}
+.pole-button[aria-pressed="true"] .pole-label{background:#71321f;color:#fff8e9}
+.pole-button[aria-pressed="true"] .pole{outline:2px solid #71321f;outline-offset:2px}
 .pole{display:block;position:relative;width:15px;height:82px;border:1px solid #75401f;border-radius:11px 11px 4px 4px;background:repeating-linear-gradient(87deg,transparent 0 5px,#75401f22 6px 7px,transparent 8px 12px),linear-gradient(90deg,#78401f 0%,#b96b32 16%,#f2c078 39%,#d9954c 67%,#a75b2b 88%,#693719 100%);box-shadow:inset 3px 0 3px #ffe2a4aa,inset -3px 0 4px #542b1688,0 4px 3px #74401f;transform-origin:50% 95%}
 .pole:before{content:"";position:absolute;left:-2px;right:-2px;top:-3px;height:11px;border:1px solid #75401f;border-radius:50%;background:linear-gradient(90deg,#a45b2b,#f5c982 45%,#a45b2b);box-shadow:0 2px 2px #63351888}
 .pole:after{content:"";position:absolute;left:5px;top:20%;width:2px;height:55%;border-radius:50%;background:#ffe0a477;filter:blur(.5px)}
-.pole:nth-child(2){height:105px}.pole:nth-child(3){height:88px}
-.toss-target:after{content:"";position:absolute;bottom:-5px;left:-15px;width:125px;height:12px;border-radius:50%;background:#9a5b31;box-shadow:0 3px 0 #74401f}
+.pole-button:nth-child(2) .pole{height:105px}.pole-button:nth-child(3) .pole{height:88px}
+.toss-target:after{content:"";position:absolute;bottom:-5px;left:50%;width:125px;height:12px;transform:translateX(-50%);pointer-events:none;border-radius:50%;background:#9a5b31;box-shadow:0 3px 0 #74401f}
 .flying-ring{position:absolute;z-index:5;left:50%;bottom:24px;width:66px;height:34px;border:9px solid #df3f2e;border-top-color:#ff8b4f;border-right-color:#a92826;border-radius:50%;opacity:0;transform:translateX(-50%) rotateX(58deg);box-shadow:inset 0 2px 1px #ffd08a;backface-visibility:hidden;transform-style:preserve-3d;will-change:transform,opacity}
 .flying-ring:after{content:"";position:absolute;inset:3px;border:2px solid #ffd08a;border-radius:50%;opacity:.7}
 .ring-shadow{position:absolute;z-index:4;left:50%;bottom:22px;width:58px;height:12px;border-radius:50%;background:#61371966;transform:translateX(-50%);filter:none;opacity:0;will-change:transform,opacity}
@@ -95,7 +97,7 @@ footer{text-align:center;color:#8c704d;padding:0 12px 25px;font-size:.85rem}
 <details class="subpanel rules-panel home-rules"><summary>📖 遊戲規則（點我查看）</summary>
 <ol>
 <li>輸入挑戰者名稱後開始遊戲，初始有 <strong>50 元</strong>和 <strong>5 個圈圈</strong>。</li>
-<li>每按一次「丟出一個圈圈」，就會消耗 1 個圈圈；獎品由系統隨機抽出。</li>
+<li>點選左、中、右任一柱子，再按「丟出一個圈圈」。每次投擲消耗 1 個圈圈，獎品由系統隨機抽出。</li>
 <li>圈圈不足時，可以花 <strong>20 元</strong>購買 <strong>3 個圈圈</strong>；金額不足就不能購買。</li>
 <li>套中的獎品會放進背包，可以到跳蚤市場出售：娃娃 25 元、水槍 15 元、洋芋片 5 元。</li>
 <li>出售獎品後，該獎品會從背包移除；不想賣的獎品可以保留到最後。</li>
@@ -110,12 +112,18 @@ footer{text-align:center;color:#8c704d;padding:0 12px 25px;font-size:.85rem}
 <div class="stat"><small>🎁 戰利品</small><strong id="itemCount">0</strong><small>件</small></div>
 </div>
 <div class="stall"><div class="stall-title">🏮 夜市套圈圈目標柱 🏮</div>
-<div class="prize-row pole-preview"><div class="prize"><span class="mini-pole"></span>第一根柱子</div><div class="prize"><span class="mini-pole tall"></span>第二根柱子</div><div class="prize"><span class="mini-pole"></span>第三根柱子</div></div>
-<div class="toss-stage" id="tossStage" aria-label="套圈圈動畫區"><div class="toss-target" aria-label="套圈圈目標柱子"><span class="pole"></span><span class="pole"></span><span class="pole"></span></div><div class="impact-burst"></div><div class="ring-shadow"></div><div class="flying-ring" id="flyingRing"></div><div class="spark">✨</div><div class="toss-caption" id="tossCaption">按下「丟出一個圈圈」開始挑戰！</div></div>
-<div class="muted">瞄準三根柱子，把圈圈套上去吧！</div></div>
+<div class="toss-stage" id="tossStage" aria-label="套圈圈動畫區">
+<div class="toss-target" role="group" aria-label="投擲方向">
+<button type="button" class="pole-button" aria-pressed="false"><span class="pole" aria-hidden="true"></span><span class="pole-label">左柱</span></button>
+<button type="button" class="pole-button" aria-pressed="false"><span class="pole" aria-hidden="true"></span><span class="pole-label">中柱</span></button>
+<button type="button" class="pole-button" aria-pressed="false"><span class="pole" aria-hidden="true"></span><span class="pole-label">右柱</span></button>
+</div>
+<div class="impact-burst"></div><div class="ring-shadow"></div><div class="flying-ring" id="flyingRing"></div><div class="spark">✨</div>
+<div class="toss-caption" id="tossCaption">點選左、中、右任一柱子來瞄準！</div>
+</div></div>
 <div class="notice" id="notice" aria-live="polite">選擇一個動作，開始你的夜市冒險！</div>
 <div class="actions">
-<button class="primary" id="throwBtn" onclick="throwRing()">🎯 丟出一個圈圈！</button>
+<button class="primary" id="throwBtn" onclick="throwRing()" disabled>🎯 丟出一個圈圈！</button>
 <button class="gold" id="buyBtn" onclick="buyRings()">➕ 花 20 元買 3 個圈圈</button>
 <button class="light" onclick="goMarket()">🏪 前往跳蚤市場</button>
 <button class="light" onclick="endGame()">🏠 不玩了，回家</button>
@@ -137,12 +145,64 @@ footer{text-align:center;color:#8c704d;padding:0 12px 25px;font-size:.85rem}
 const prices={"大隻卡比獸娃娃":25,"塑膠水槍":15,"小包洋芋片":5};
 const icons={"大隻卡比獸娃娃":"🧸","塑膠水槍":"🔫","小包洋芋片":"🥔"};
 const prizes=["大隻卡比獸娃娃","塑膠水槍","小包洋芋片",...Array(27).fill("空罐子 (沒中)")];
-let player="",coins=50,rings=5,backpack=[],busy=false,nextPole=0;
+let player="",coins=50,rings=5,backpack=[],busy=false,selectedPole=null;
+const poleButtons=[...document.querySelectorAll(".pole-button")];
 const $=id=>document.getElementById(id);
 function show(id){["start","game","market","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
 function startGame(){player=$("playerName").value.trim();if(!player){$("playerName").focus();alert("請先輸入挑戰者大名！");return}$("welcome").textContent=`歡迎 ${player}！祝你今天手氣旺旺！`;show("game");update()}
-function update(){$("rings").textContent=rings;$("coins").textContent=coins;$("itemCount").textContent=backpack.length;$("throwBtn").disabled=rings<=0||busy;$("buyBtn").disabled=coins<20;$("inventory").innerHTML=backpack.length?backpack.map(x=>`<span class="tag">${icons[x]} ${x}</span>`).join(""):'<span class="muted">目前還沒有戰利品</span>'}
-function throwRing(){if(rings<=0||busy)return;rings--;busy=true;update();const stage=$("tossStage");const poleNames=["第一根柱子","第二根柱子","第三根柱子"];const offsets=[-46,0,46];const aimedPole=nextPole;const x=offsets[aimedPole];stage.style.setProperty("--target-x",x+"px");stage.style.setProperty("--x1",x*.28+"px");stage.style.setProperty("--x2",x*.58+"px");stage.style.setProperty("--x3",x*.82+"px");stage.style.setProperty("--miss-end",(x+(aimedPole===0?-22:22))+"px");stage.querySelectorAll(".pole").forEach((p,i)=>p.classList.toggle("aimed",i===aimedPole));nextPole=(nextPole+1)%3;const got=prizes[Math.floor(Math.random()*prizes.length)];stage.classList.remove("throwing","hit","miss");requestAnimationFrame(()=>stage.classList.add("throwing",got==="空罐子 (沒中)"?"miss":"hit"));$("tossCaption").textContent=`瞄準${poleNames[aimedPole]}！圈圈飛出去啦！`;$("notice").textContent="🎯 圈圈正在飛向獎品架……";$("throwBtn").disabled=true;setTimeout(()=>{stage.classList.remove("throwing","hit","miss");stage.querySelectorAll(".pole").forEach(p=>p.classList.remove("aimed"));if(got==="空罐子 (沒中)"){$("tossCaption").textContent="💨 哎呀！差一點點！";$("notice").textContent="❌ 哎呀！圈圈彈開了，沒有套中！再接再厲！"}else{$("tossCaption").textContent="🎉 完美命中！";backpack.push(got);$("notice").textContent=`🎉 太神啦！你套中了【${got}】！恭喜！`}busy=false;update();if(rings===0)$("notice").textContent+=" 圈圈用完了，可以去跳蚤市場整理戰利品，或結束冒險。"},1500)}
+poleButtons.forEach(button=>{
+  button.addEventListener("click",()=>{
+    if(busy)return;
+    selectedPole=button;
+    update();
+    $("tossCaption").textContent=`已瞄準${button.textContent.trim()}！`;
+  });
+});
+function update(){
+  poleButtons.forEach(button=>{
+    button.disabled=busy;
+    button.setAttribute("aria-pressed",String(button===selectedPole));
+  });
+  $("rings").textContent=rings;$("coins").textContent=coins;$("itemCount").textContent=backpack.length;$("throwBtn").disabled=rings<=0||busy||!selectedPole;$("buyBtn").disabled=coins<20;$("inventory").innerHTML=backpack.length?backpack.map(x=>`<span class="tag">${icons[x]} ${x}</span>`).join(""):'<span class="muted">目前還沒有戰利品</span>'}
+function throwRing(){
+  if(rings<=0||busy||!selectedPole)return;
+  const target=selectedPole;
+  const pole=target.querySelector(".pole");
+  const x=target.offsetLeft+(target.offsetWidth-target.parentElement.offsetWidth)/2;
+
+  rings--;
+  busy=true;
+  update();
+  const stage=$("tossStage");
+  stage.style.setProperty("--target-x",x+"px");
+  stage.style.setProperty("--x1",x*.28+"px");
+  stage.style.setProperty("--x2",x*.58+"px");
+  stage.style.setProperty("--x3",x*.82+"px");
+  stage.style.setProperty("--miss-end",(x+(x<0?-22:22))+"px");
+  pole.classList.add("aimed");
+  const got=prizes[Math.floor(Math.random()*prizes.length)];
+  const missed=got==="空罐子 (沒中)";
+  stage.classList.remove("throwing","hit","miss");
+  requestAnimationFrame(()=>stage.classList.add("throwing",missed?"miss":"hit"));
+  $("tossCaption").textContent=`瞄準${target.textContent.trim()}！圈圈飛出去啦！`;
+  $("notice").textContent="🎯 圈圈正在飛向獎品架……";
+
+  setTimeout(()=>{
+    stage.classList.remove("throwing","hit","miss");
+    pole.classList.remove("aimed");
+    if(missed){
+      $("tossCaption").textContent="💨 哎呀！差一點點！";
+      $("notice").textContent="❌ 哎呀！圈圈彈開了，沒有套中！再接再厲！";
+    }else{
+      $("tossCaption").textContent="🎉 完美命中！";
+      backpack.push(got);
+      $("notice").textContent=`🎉 太神啦！你套中了【${got}】！恭喜！`;
+    }
+    busy=false;
+    update();
+    if(rings===0)$("notice").textContent+=" 圈圈用完了，可以去跳蚤市場整理戰利品，或結束冒險。";
+  },1500);
+}
 function buyRings(){if(coins<20){$("notice").textContent="❌ 錢不夠啦！至少需要 20 元才能購買。";return}coins-=20;rings+=3;$("notice").textContent="老闆收下 20 元，遞給你 3 個新圈圈！";update()}
 function goMarket(){renderMarket();show("market")}
 function renderMarket(){$("marketCoins").textContent=coins;$("marketCount").textContent=backpack.length;const best=backpack.reduce((a,b)=>prices[b]>prices[a]?b:a,"");$("bestItem").textContent=best?`${best}（${prices[best]}元）`:"尚無";$("marketList").innerHTML=backpack.length?backpack.map((item,i)=>`<div class="market-item"><span>${icons[item]} <strong>${item}</strong><br><small class="muted">收購價：${prices[item]} 元</small></span><button class="green" onclick="sellItem(${i})">賣出</button></div>`).join(""):'<p class="muted">背包是空的，還沒有可以出售的獎品。</p>'}
